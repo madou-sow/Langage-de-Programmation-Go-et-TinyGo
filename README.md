@@ -94,4 +94,5 @@ v1.18 ou supérieur.
 Si vous utiliser Ubuntu ou un autre Linux basé sur Debian, téléchargez le fichier DEB depuis
 Github et installez-le à l'aide des commandes suivantes :
 > wget https://github.com/tinygo-org/tinygo/releases/download/v0.26.0/tinygo_0.26.0_amd64.deb
+
 dpkg -i tinygo_0.26.0_amd64.deb
