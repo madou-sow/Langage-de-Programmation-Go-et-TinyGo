@@ -76,3 +76,13 @@ GOGCCFLAGS="-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -
 fdebug-prefix-map=/tmp/go-build3759803811=/tmp/go-build -gno-record-gcc-
 switches
 ```
+**Ceci est une liste partielle des commandes de l'outil Go**
+
+| Commande | Description |
+| go build | compile les packages et les dépendances |
+| go env | affiche les informations sur l'environnement Go | 
+| go get | ajoute les dépendances aux des modules courants et installe les |
+| go install | compile et installe les packages et les dépendances |
+| go list | liste les packages et les modules |
+| go run | compile et exécute un programme Go |
+| go version | affiche la version Go |
