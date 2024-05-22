@@ -168,3 +168,34 @@ arduino$ cat go.mod
 module blinky
 go 1.19
 ```
+**EXEMPLE 2 : blinkblue.go**
+Il existe un exemple fourni avec le package TinyGo que vous avez configuré à l'étape précédente,
+vous pouvez le trouver dans le répertoire TinyGo/examples. Voici un code qui fonctionne avec la
+majorité de la carte de développement ESP32 l’on peut rencontrer des problèmes avec le numéro
+des broches ou le numéro "Pin"
+```
+package main
+import (
+"machine"
+"time"
+)
+func main() {
+// On board LED is connected to GPIO 2
+led := machine.Pin(2)
+// Configure PIN as output
+led.Configure(machine.PinConfig{Mode: machine.PinOutput})
+// Infinite main loop
+for {
+// Turn LED off
+led.Low()
+// Wait for 1 second
+time.Sleep(time.Millisecond * 1000)
+// Turn LED on
+led.High()
+// Wait for 1 second
+time.Sleep(time.Millisecond * 1000)
+}
+}
+```
+Et maintenant .... flashons le code sur l'ESP32. Si tout se passe comme prévu, la LED de votre
+ESP32 commencera à clignoter dans quelques secondes à peine !
