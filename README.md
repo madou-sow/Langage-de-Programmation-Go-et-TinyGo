@@ -79,6 +79,7 @@ switches
 **Ceci est une liste partielle des commandes de l'outil Go**
 
 | Commande | Description |
+|---------:|-------------|
 | go build | compile les packages et les dépendances |
 | go env | affiche les informations sur l'environnement Go | 
 | go get | ajoute les dépendances aux des modules courants et installe les |
