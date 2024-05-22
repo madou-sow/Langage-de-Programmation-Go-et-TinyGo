@@ -18,6 +18,7 @@ Linux https://go.dev/dl/go1.19.3.linux-amd64.tar.gz go1.19.3.linux-amd64.tar.gz 
 > 2. Installez
 Extrayez l'archive que vous venez de télécharger dans /usr/local, en créant une nouvelle arborescence Go
 dans /usr/local/go :
+```
 $ tar -C /usr/local -xzf go1.19.3.linux-amd64.tar.gz
 Vous devrez peut-être exécuter la commande en tant que root ou via sudo).
 Ajouter /usr/local/go/bin à la variable d'environnement PATH.
@@ -39,3 +40,4 @@ GOBIN=""
 GOCACHE="/users/mamadou/.cache/go-build"
 GOENV="/users/mamadou/.config/go/env"
 GOEXE=""
+```
