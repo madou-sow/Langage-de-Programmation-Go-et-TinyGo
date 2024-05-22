@@ -227,3 +227,124 @@ Hash of data verified.
 Leaving...
 Hard resetting via RTS pin...
 ```
+Préparez votre carte ESP-WROOM-32D en la connectant sur le port USB. Un nouveau port devrait
+apparaître avec la commande :
+```
+$ ls -l /dev/tty*
+```
+En général, il s’agit du port /dev/ttyUSB0. Avant de téléverser le programme dans la carte, il vous
+faudra probablement modifier les droits d’accès au port USB (message Error opening serial port...).
+La raison est que le propriétaire du fichier /dev/ttyUSB0 fait partie du groupe dialout :
+```
+crw-rw---- 1 root dialout 166, 0 févr. 26 10:49 /dev/ttyUSB0
+```
+Il faut donc ajouter l’utilisateur à ce groupe :
+```
+$ sudo usermod -a -G dialout mamadou
+```
+où est le nom utilisateur. Il faudra vous déconnecter et vous reconnecter pour que cela prenne effet.
+Pour compiler et téléverser le programme, exécuter la commande :
+```
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ ls -l
+total 12
+-rw-rw-r-- 1 mamadou mamadou 596 nov. 15 13:08 blinky.go
+-rw-rw-r-- 1 mamadou mamadou 23 oct. 13 09:56 go.mod
+-rw-r--r-- 1 mamadou mamadou 158 nov. 15 14:16 readme.txt
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ cd /usr/local/lib/tinygo/targets
+mamadou@port-lipn12:/usr/local/lib/tinygo/targets$ ls -l esp32*
+-rw-r--r-- 1 root root
+61 sept. 29 15:28 esp32c3-12f.json
+-rw-r--r-- 1 root root 577 sept. 29 15:28 esp32c3.json
+-rw-r--r-- 1 root root 9686 sept. 29 15:28 esp32c3.ld
+-rw-r--r-- 1 root root
+66 sept. 29 15:28 esp32-coreboard-v2.json
+-rw-r--r-- 1 root root 862 sept. 29 15:28 esp32.json
+-rw-r--r-- 1 root root 5953 sept. 29 15:28 esp32.ld
+-rw-r--r-- 1 root root
+40 sept. 29 15:28 esp32-mini32.json
+$ tinygo flash -target esp32 -port /dev/ttyUSB0 blinky
+esptool.py v4.5.dev0
+Serial port /dev/ttyUSB0
+Connecting.....
+Chip is ESP32-D0WD (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding
+Scheme None
+Crystal is 40MHz
+MAC: ac:0b:fb:26:ff:58
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00001fff...
+Warning: Image file at 0x1000 is protected with a hash checksum, so not
+changing the flash mode setting. Use the --flash_mode=keep option instead
+of --flash_mode=dout in order to remove this warning, or use the --dont-
+append-digest option for the elf2image command in order to generate an
+image file without a hash checksum
+Compressed 3232 bytes to 2436...
+Wrote 3232 bytes (2436 compressed) at 0x00001000 in 0.3 seconds (effective
+92.3 kbit/s)...
+Hash of data verified.
+Leaving...
+Hard resetting via RTS pin...
+```
+Ici, la cible est esp32-mini32.
+```
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ tinygo flash -target esp32-mini32 -port /dev/ttyUSB0 blinky
+esptool.py v4.5.dev0
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WD (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding
+Scheme None
+Crystal is 40MHz
+MAC: ac:0b:fb:26:ff:58
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00001fff...
+Warning: Image file at 0x1000 is protected with a hash checksum, so not
+changing the flash mode setting. Use the --flash_mode=keep option instead
+of --flash_mode=dout in order to remove this warning, or use the --dont-
+append-digest option for the elf2image command in order to generate an
+image file without a hash checksum
+Compressed 3232 bytes to 2436...
+Wrote 3232 bytes (2436 compressed) at 0x00001000 in 0.3 seconds (effective
+101.6 kbit/s)...
+Hash of data verified.
+Leaving...
+Hard resetting via RTS pin...
+```
+Ici, la cible est esp32-coreboard-v2 .
+```
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ tinygo flash -target esp32-coreboard-v2 -port /dev/ttyUSB0 blinky
+esptool.py v4.5.dev0
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WD (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme
+None
+Crystal is 40MHz
+MAC: ac:0b:fb:26:ff:58
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00001fff...
+Warning: Image file at 0x1000 is protected with a hash checksum, so not
+changing the flash mode setting. Use the --flash_mode=keep option instead of --
+flash_mode=dout in order to remove this warning, or use the --dont-append-
+digest option for the elf2image command in order to generate an image file
+without a hash checksum
+Compressed 3232 bytes to 2436...
+Wrote 3232 bytes (2436 compressed) at 0x00001000 in 0.3 seconds (effective
+101.6 kbit/s)...
+Hash of data verified.
+Leaving...
+Hard resetting via RTS pin...
+```
