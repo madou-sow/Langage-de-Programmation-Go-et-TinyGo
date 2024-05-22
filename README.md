@@ -88,7 +88,7 @@ switches
 | go run | compile et exécute un programme Go |
 | go version | affiche la version Go |
 
-### Installation et configuration de TinyGo
+#### Installation et configuration de TinyGo
 Go doit déjà être installé sur votre machine pour pouvoir installer TinyGo. Nous recommandons Go
 v1.18 ou supérieur.
 Si vous utiliser Ubuntu ou un autre Linux basé sur Debian, téléchargez le fichier DEB depuis
@@ -111,4 +111,24 @@ Pour compiler et téléverser des programmes TinyGo dans un microcontrôleur AVR
 l’Arduino Uno, vous devez encore installer des outils supplémentaires :
 ```
 apt-get install gcc-avr avr-libc avrdude
+```
+
+### Un premier programme en langage tinygo faisant clignoter la carte ESP-WROOM-32D
+Vous devez installer la chaîne d'outils Espressif pour Linux pour utiliser TinyGo avec l'ESP32 :
+```
+https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/linux-
+setup.html#standard-setup-of-toolchain-for-linux
+```
+De plus, vous devez installer l'outil de flash esptool :
+```
+https://github.com/espressif/esptool#easy-installation
+```
+Vous devriez maintenant pouvoir flasher votre carte comme suit :
+```
+Branchez votre carte ESP32 sur le port USB de votre ordinateur.
+```
+Construisez et flashez votre code TinyGo à l'aide de la commande flash tinygo. Cette commande
+devrait faire clignoter l'ESP32 avec l'exemple blinky :
+```
+tinygo flash -target=esp32-mini32 -port=/dev/ttyUSB0 examples/blinky
 ```
