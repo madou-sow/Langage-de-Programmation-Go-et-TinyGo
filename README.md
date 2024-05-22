@@ -93,6 +93,22 @@ Go doit déjà être installé sur votre machine pour pouvoir installer TinyGo. 
 v1.18 ou supérieur.
 Si vous utiliser Ubuntu ou un autre Linux basé sur Debian, téléchargez le fichier DEB depuis
 Github et installez-le à l'aide des commandes suivantes :
-> wget https://github.com/tinygo-org/tinygo/releases/download/v0.26.0/tinygo_0.26.0_amd64.deb
-
-> dpkg -i tinygo_0.26.0_amd64.deb
+```
+ wget https://github.com/tinygo-org/tinygo/releases/download/v0.26.0/tinygo_0.26.0_amd64.deb
+ dpkg -i tinygo_0.26.0_amd64.deb
+```
+Ajouter le chemin vers l’exécutable de TinyGo dans votre variable d’environnement PATH :
+```
+export PATH=$PATH:/usr/local/bin
+```
+Tester si l’installation s’est parfaitement déroulée en exécutant la commande qui devrait afficher le
+numéro de version de TinyGo :
+```
+$ tinygo version
+tinygo version 0.26.0 linux/amd64 (using go version go1.19.2 and LLVM version 14.0.0)
+```
+Pour compiler et téléverser des programmes TinyGo dans un microcontrôleur AVR comme celui de
+l’Arduino Uno, vous devez encore installer des outils supplémentaires :
+```
+apt-get install gcc-avr avr-libc avrdude
+```
