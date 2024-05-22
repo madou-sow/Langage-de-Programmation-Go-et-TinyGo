@@ -132,3 +132,39 @@ devrait faire clignoter l'ESP32 avec l'exemple blinky :
 ```
 tinygo flash -target=esp32-mini32 -port=/dev/ttyUSB0 examples/blinky
 ```
+**EXEMPLE 1 : blinky.go**
+```
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ cat blinky.go
+package main
+import (
+"machine"
+"time"
+)
+func main() {
+// Utilisation de la LED intégrée en surface de la carte, broche D13
+var led machine.Pin = machine.Pin(13)
+// Configuration de la broche en sortie
+led.Configure(machine.PinConfig{Mode: machine.PinOutput})
+for {
+led.High() // sortie au niveau logique haut, LED allumée
+time.Sleep(time.Millisecond * 500) // temporisation 500 millisecondes
+led.Low() // sortie au niveau logique bas, LED éteinte
+time.Sleep(time.Millisecond * 500) // temporisation 500 millisecondes
+}
+}
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ go mod init blinky
+go: creating new go.mod: module blinky
+go: to add module requirements and sums:
+go mod tidy
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ ls -l
+total 8
+-rw-rw-r-- 1 mamadou mamadou 595 Oct 13 09:28 blinky.go
+-rw-rw-r-- 1 mamadou mamadou 23 Oct 13 09:56 go.mod
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/blinky-
+arduino$ cat go.mod
+module blinky
+go 1.19
+```
