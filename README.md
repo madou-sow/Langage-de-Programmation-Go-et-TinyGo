@@ -348,3 +348,39 @@ Hash of data verified.
 Leaving...
 Hard resetting via RTS pin...
 ```
+
+```
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/hello$ cat
+hello.go
+package main
+import "fmt"
+func main() {
+fmt.Println("Hello world !")
+}
+mamadou@port-lipn12:~/big-data/cerin10102022/apprentissage/tinygo/hello$ tinygo
+flash -target esp32 -port /dev/ttyUSB0 hello
+esptool.py v4.5.dev0
+Serial port /dev/ttyUSB0
+Connecting.......
+Chip is ESP32-D0WD (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme
+None
+Crystal is 40MHz
+MAC: ac:0b:fb:26:ff:58
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x0000bfff...
+Warning: Image file at 0x1000 is protected with a hash checksum, so not
+changing the flash mode setting. Use the --flash_mode=keep option instead of --
+flash_mode=dout in order to remove this warning, or use the --dont-append-
+digest option for the elf2image command in order to generate an image file
+without a hash checksum
+Compressed 41408 bytes to 32602...
+Wrote 41408 bytes (32602 compressed) at 0x00001000 in 3.4 seconds (effective
+98.2 kbit/s)...
+Hash of data verified.
+Leaving...
+Hard resetting via RTS pin...
+```
