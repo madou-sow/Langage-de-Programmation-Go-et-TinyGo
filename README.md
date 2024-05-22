@@ -180,22 +180,50 @@ import (
 "time"
 )
 func main() {
-// On board LED is connected to GPIO 2
-led := machine.Pin(2)
-// Configure PIN as output
-led.Configure(machine.PinConfig{Mode: machine.PinOutput})
-// Infinite main loop
-for {
-// Turn LED off
-led.Low()
-// Wait for 1 second
-time.Sleep(time.Millisecond * 1000)
-// Turn LED on
-led.High()
-// Wait for 1 second
-time.Sleep(time.Millisecond * 1000)
-}
+      // On board LED is connected to GPIO 2
+      led := machine.Pin(2)
+      // Configure PIN as output
+      led.Configure(machine.PinConfig{Mode: machine.PinOutput})
+      // Infinite main loop
+      for {
+           // Turn LED off
+           led.Low()
+           // Wait for 1 second
+           time.Sleep(time.Millisecond * 1000)
+           // Turn LED on
+           led.High()
+           // Wait for 1 second
+           time.Sleep(time.Millisecond * 1000)
+      }
 }
 ```
 Et maintenant .... flashons le code sur l'ESP32. Si tout se passe comme prévu, la LED de votre
 ESP32 commencera à clignoter dans quelques secondes à peine !
+
+**tinygo flash -target esp32 -port /dev/ttyUSB0 blinkblue.go**
+```
+esptool.py v4.5.dev0
+Serial port /dev/ttyUSB0
+Connecting.....
+Chip is ESP32-D0WD (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme
+None
+Crystal is 40MHz
+MAC: ac:0b:fb:26:ff:58
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00001fff...
+Warning: Image file at 0x1000 is protected with a hash checksum, so not
+changing the flash mode setting. Use the --flash_mode=keep option instead of --
+flash_mode=dout in order to remove this warning, or use the --dont-append-
+digest option for the elf2image command in order to generate an image file
+without a hash checksum
+Compressed 3232 bytes to 2426...
+Wrote 3232 bytes (2426 compressed) at 0x00001000 in 0.3 seconds (effective 92.1
+kbit/s)...
+Hash of data verified.
+Leaving...
+Hard resetting via RTS pin...
+```
